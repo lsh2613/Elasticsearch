@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  es:
+    build:
+      context: .
+      dockerfile: Dockerfile.es
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1
+    container_name: es
+    environment:
+      - node.name=es-node
+      - cluster.name=search-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+    ports:
+      - 9200:9200
+    networks:
+      - es-bridge
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.7.1
+    container_name: kibana
+    environment:
+      SERVER_NAME: kibana
+      ELASTICSEARCH_HOSTS: http://es:9200
+    ports:
+      - 5601:5601
+    depends_on:
+      - es
+    networks:
+      - es-bridge
+
+networks:
+  es-bridge:
+    driver: bridge
+
+# docker-compose up --build -d
+
+#  docker exec -it d7649fef82d043503328c622d9f54e490cb61ba08c2816e8b2b934fead740706 /bin/bash
+#  cd /usr/share/elasticsearch/bin/
+#  ./elasticsearch-plugin install analysis-nori
+
+# es 가이드
+# esoperation 사용법 https://docs.spring.io/spring-data/elasticsearch/reference/elasticsearch/template.html
+# nori 설명 https://esbook.kimjmin.net/06-text-analysis/6.7-stemming/6.7.2-nori
