@@ -37,13 +37,3 @@ services:
 networks:
   es-bridge:
     driver: bridge
-
-# docker-compose up --build -d
-
-#  docker exec -it d7649fef82d043503328c622d9f54e490cb61ba08c2816e8b2b934fead740706 /bin/bash
-#  cd /usr/share/elasticsearch/bin/
-#  ./elasticsearch-plugin install analysis-nori
-
-# es 가이드
-# esoperation 사용법 https://docs.spring.io/spring-data/elasticsearch/reference/elasticsearch/template.html
-# nori 설명 https://esbook.kimjmin.net/06-text-analysis/6.7-stemming/6.7.2-nori
