@@ -6,10 +6,16 @@ import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PostDocumentRepository extends ElasticsearchRepository<PostDocument, String> {
 
-//    @Query("{\"match\": {\"content\": {\"query\": \"?0\"}}}")
+    //    @Query("{\"match\": {\"content\": {\"query\": \"?0\"}}}")
+    @Query("{\"match\": {\"content\": \"?0\"}}")
+    List<PostDocument> findByContentContaining(String keyword);
+
+    //    @Query("{\"match\": {\"content\": {\"query\": \"?0\"}}}")
     @Query("{\"match\": {\"content\": \"?0\"}}")
     Page<PostDocument> findByContentContaining(String keyword, Pageable pageable);
 }
