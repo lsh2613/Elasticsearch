@@ -1,0 +1,12 @@
+{
+  "properties": {
+    "title": {
+      "type": "text",
+      "analyzer": "nori_korean"
+    },
+    "content": {
+      "type": "text",
+      "analyzer": "nori_korean"
+    }
+  }
+}
