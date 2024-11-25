@@ -34,6 +34,9 @@ dependencies {
 
     // elasticsearch
     implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+
+    // h2
+    runtimeOnly 'com.h2database:h2'
 }
 
 tasks.named('test') {
