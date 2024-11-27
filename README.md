@@ -30,12 +30,12 @@ docker-compose up --build -d
 **2. 프로젝트 실행**<br>
 
 **3. 다큐먼트 추가**
-``` http request
+```
 [POST] loacalhost:8080/posts?title=애국가&content=동해물과 백두산이
 ```
 
 **4. 다큐먼트 검색**
-``` http request
+```
 [GET] loacalhost:8080/posts/_search?content=동해
 ```    
 
