@@ -18,14 +18,14 @@ public class PostDocumentController {
 
     private final PostDocumentRepository postDocumentRepository;
 
-    @PostMapping("/posts")
+    @PostMapping("/post-documents")
     public ResponseEntity postDocument(@RequestBody PostCreateReq postCreateReq) {
         PostDocument postDocument = new PostDocument(postCreateReq.getTitle(), postCreateReq.getContent());
         postDocumentRepository.save(postDocument);
         return ResponseEntity.ok(postDocument.getId());
     }
 
-    @GetMapping("/posts/_search")
+    @GetMapping("/post-documents")
     public ResponseEntity search(@RequestParam String keyword,
                                  @PageableDefault Pageable pageable) {
         Page<PostDocument> postDocuments = postDocumentRepository.findByContentContaining(keyword, pageable);
