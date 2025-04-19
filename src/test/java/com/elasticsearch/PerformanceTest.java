@@ -59,7 +59,6 @@ class PerformanceTest {
 
     @Test
     void 검생_성능_테스트() throws InterruptedException {
-        // 검색용 테스트 데이터 삽입
         List<String[]> rows = getRowsFromCSV();
         batchInsertToH2(rows);
         batchInsertToES(rows);
@@ -82,7 +81,7 @@ class PerformanceTest {
     }
 
     private List<String[]> getRowsFromCSV() {
-        String filePath = "data/test_data.csv"; // 파일 경로
+        String filePath = "data/test_data.csv";
 
         List<String[]> rows = new ArrayList<>();
         try (InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(filePath);
