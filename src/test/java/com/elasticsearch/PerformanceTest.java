@@ -34,9 +34,9 @@ class PerformanceTest {
 
     @AfterEach
     void cleanUp() throws InterruptedException {
-        jdbcTemplate.execute("DELETE FROM post");
-        elasticsearchOperations.delete(Query.findAll(), PostDocument.class, IndexCoordinates.of("post"));
-        elasticsearchOperations.indexOps(IndexCoordinates.of("post")).refresh(); // 동기화
+        jdbcTemplate.execute("DELETE FROM post_entity");
+        elasticsearchOperations.delete(Query.findAll(), PostDocument.class, IndexCoordinates.of("post_document"));
+        elasticsearchOperations.indexOps(IndexCoordinates.of("post_document")).refresh(); // 동기화
         sleep(3000);
     }
 
@@ -108,7 +108,7 @@ class PerformanceTest {
     }
 
     private void batchInsertToH2(List<String[]> rows) {
-        String sql = "INSERT INTO post (title, content) VALUES (?, ?)";
+        String sql = "INSERT INTO post_entity (title, content) VALUES (?, ?)";
 
         List<Object[]> batchArgs = new ArrayList<>();
         for (String[] row : rows) {
@@ -126,7 +126,7 @@ class PerformanceTest {
                     .build();
             indexQueryList.add(indexQuery);
         }
-        elasticsearchOperations.bulkIndex(indexQueryList, IndexCoordinates.of("post"));
+        elasticsearchOperations.bulkIndex(indexQueryList, IndexCoordinates.of("post_document"));
     }
 
 }
