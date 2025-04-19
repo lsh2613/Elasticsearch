@@ -28,7 +28,7 @@ class PerformanceTest {
     @Autowired
     private ElasticsearchOperations elasticsearchOperations;
     @Autowired
-    private PostRepository postRepository;
+    private PostEntityRepository postEntityRepository;
     @Autowired
     private PostDocumentRepository postDocumentRepository;
 
@@ -69,7 +69,7 @@ class PerformanceTest {
         StopWatch searchWatch = new StopWatch("Search Watch");
 
         searchWatch.start("H2 - search keyword");
-        List<Post> posts = postRepository.findByContentContaining(keyword);
+        List<PostEntity> postEntities = postEntityRepository.findByContentContaining(keyword);
         searchWatch.stop();
 
         searchWatch.start("ES - search keyword");
@@ -78,7 +78,7 @@ class PerformanceTest {
 
         System.out.println(searchWatch.prettyPrint());
 
-        assertThat(posts.size()).isEqualTo(postDocuments.size());
+        assertThat(postEntities.size()).isEqualTo(postDocuments.size());
     }
 
     private List<String[]> getRowsFromCSV() {

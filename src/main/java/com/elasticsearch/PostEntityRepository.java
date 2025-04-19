@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PostRepository extends JpaRepository<Post, Long> {
+public interface PostEntityRepository extends JpaRepository<PostEntity, Long> {
 
 //    SELECT * FROM post WHERE content LIKE %?%;
-    List<Post> findByContentContaining(String keyword);
+    List<PostEntity> findByContentContaining(String keyword);
 }
