@@ -4,14 +4,13 @@ services:
   es:
     build:
       context: .
-      dockerfile: Dockerfile.es
+      dockerfile: Dockerfile
     image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1
     container_name: es
     environment:
       - node.name=es-node
       - cluster.name=search-cluster
       - discovery.type=single-node
-      - bootstrap.memory_lock=true
       - ES_JAVA_OPTS=-Xms1g -Xmx1g
       - xpack.security.enabled=false
       - xpack.security.http.ssl.enabled=false
