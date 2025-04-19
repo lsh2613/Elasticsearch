@@ -8,7 +8,7 @@ import org.springframework.data.elasticsearch.annotations.Setting;
 import org.springframework.data.elasticsearch.annotations.WriteTypeHint;
 
 @Getter
-@Document(indexName = "post", writeTypeHint = WriteTypeHint.FALSE) // '_class' 필드 제거
+@Document(indexName = "post_document", writeTypeHint = WriteTypeHint.FALSE) // '_class' 필드 제거
 @Setting(settingPath = "elastic/post-document-setting.json") // post 인덱스에 대한 분석기, 토크나이저 설정
 @Mapping(mappingPath = "elastic/post-document-mapping.json") // post가 저장&검색될 때 사용될 타입과 분석기 지정
 public class PostDocument {
