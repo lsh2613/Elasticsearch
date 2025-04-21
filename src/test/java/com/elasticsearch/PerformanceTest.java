@@ -1,5 +1,6 @@
 package com.elasticsearch;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import java.util.List;
 import static java.lang.Thread.sleep;
 import static org.assertj.core.api.Assertions.*;
 
+@Slf4j
 @SpringBootTest
 class PerformanceTest {
 
@@ -54,7 +56,7 @@ class PerformanceTest {
         batchInsertToES(rows);
         bulkWatch.stop();
 
-        System.out.println(bulkWatch.prettyPrint());
+        log.info(bulkWatch.prettyPrint());
     }
 
     @Test
@@ -75,7 +77,7 @@ class PerformanceTest {
         List<PostDocument> postDocuments = postDocumentRepository.findByContentContaining(keyword);
         searchWatch.stop();
 
-        System.out.println(searchWatch.prettyPrint());
+        log.info(searchWatch.prettyPrint());
 
         assertThat(postEntities.size()).isEqualTo(postDocuments.size());
     }
