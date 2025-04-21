@@ -1,4 +1,8 @@
 spring:
+  main:
+    banner-mode: off
+    log-startup-info: false
+
   data:
     elasticsearch:
       repositories:
@@ -12,3 +16,8 @@ spring:
   h2:
     console:
       enabled: true
+
+logging:
+  level:
+    root: ERROR
+    com.elasticsearch: INFO
